@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
 
 function Registerpage() {
 
@@ -71,6 +72,34 @@ function Registerpage() {
       <section className="d-flex align-items-center justify-content-center p-3"  style={{ background: 'var(--background)', color: 'var(--text)' }}>
         <div className="p-5 vh-auto rounded-4 shadow col-xxl-4 card mx-auto my-5">
           <div className="text-center mb-5" style={{ color: 'var(--text)', fontFamily: 'var(--font-heading)' }} ><h1>Register Form</h1></div>
+
+          <div className="d-flex justify-content-center mb-3">
+            <GoogleLogin 
+              onSuccess={credentialResponse => {
+                axios.post("http://localhost:5000/api/auth/oauth-login", {
+                  token: credentialResponse.credential
+                }).then((res) => {
+                  localStorage.setItem("token", res.data.token);
+                  setMessage("Registration successful");
+                  setTimeout(() => {
+                    navigate("/home");
+                  }, 2000);
+                })
+              }}
+              onError={() => {
+                console.log('Registration Failed');
+              }}
+              useOneTap
+              width='300'
+            />
+          </div>
+
+          <div className="fp-divider">
+            <div className="fp-divider-line" />
+            <span className="fp-divider-text">or</span>
+            <div className="fp-divider-line" />
+          </div>
+
           {message && <div className="alert alert-info">{message}</div>}
 
           <form onSubmit={handleSubmit} >

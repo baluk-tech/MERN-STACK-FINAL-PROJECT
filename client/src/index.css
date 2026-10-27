@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
     --text: #111827;
     --background: #f8fafc;
@@ -100,6 +102,8 @@ body { font-family: var(--font); color: var(--text); overflow-x: hidden; }
   font-family: var(--font);
 }
 .btn-nav-login:hover { border-color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.06); color:#fff; }
+
+.profile-icon:hover { box-shadow: 0 6px 20px rgba(124,58,237,0.4); color:#fff; background: var(--purple); }
 
 .btn-nav-signup {
   background: var(--purple);
@@ -773,7 +777,6 @@ body { font-family: var(--font); color: var(--text); overflow-x: hidden; }
    ForgotPassword.css
    Custom CSS — things Bootstrap 5 cannot handle
    ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* ── CSS VARIABLES ─────────────────────────────────── */
 :root {
@@ -1539,4 +1542,578 @@ body {
     top: 20px;
     right: -40px;
   }
+}
+
+
+/* Base Adjustments */
+.dashboard-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Typography Helpers */
+.fs-7 {
+  font-size: 0.85rem;
+}
+.small-text {
+  font-size: 0.75rem;
+}
+
+/* Custom Background Colors */
+.custom-bg-purple {
+  background-color: #f6f5ff;
+  border: 1px solid #eeecff;
+}
+.custom-bg-green {
+  background-color: #f2fbf4;
+  border: 1px solid #e9f7ec;
+}
+.custom-bg-orange {
+  background-color: #fff9f0;
+  border: 1px solid #fff3e0;
+}
+.custom-bg-red {
+  background-color: #fff5f5;
+  border: 1px solid #ffeded;
+}
+.bg-light-blue {
+  background-color: #f4f8ff;
+  border: 1px solid #ebf2ff;
+}
+
+/* Icon Colors & Containers */
+.icon-box {
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+}
+
+.icon-purple { color: #6b5cd8; }
+.icon-green { color: #43a85b; }
+.icon-orange { color: #f29a38; }
+.icon-red { color: #e65c5c; }
+.icon-blue { color: #3b82f6; }
+
+/* Link Colors */
+.link-purple { color: #6b5cd8; }
+.link-purple:hover { color: #5244b5; }
+
+.link-green { color: #43a85b; }
+.link-green:hover { color: #328546; }
+
+.link-orange { color: #f29a38; }
+.link-orange:hover { color: #cc7e28; }
+
+.link-red { color: #e65c5c; }
+.link-red:hover { color: #c44747; }
+
+/* Card Styling */
+.stat-card {
+  transition: transform 0.2s ease-in-out;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.custom-shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.02) !important;
+  border-color: #f0f0f0 !important;
+}
+
+/* Quick Actions Cards */
+.quick-action-card {
+  min-height: 140px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.quick-action-card:hover {
+  filter: brightness(0.97);
+  transform: translateY(-2px);
+}
+
+.qa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Recent Activity specific styles */
+.activity-list .activity-icon {
+  font-size: 1.1rem;
+}
+
+/* For Desktop (Sidebar is visible) */
+@media (min-width: 992px) {
+  .custom-scroll-container {
+    overflow-y: auto; /* Adds the vertical scrollbar */
+    max-height: calc(100vh - 1rem); /* Stops the box at the bottom of the screen */
+    padding-right: 10px; /* Adds a tiny bit of breathing room for the scrollbar */
+  }
+
+  /* Optional: Makes the scrollbar look modern and sleek instead of the ugly default one! */
+  .custom-scroll-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll-container::-webkit-scrollbar-thumb {
+    background: #d1d5db; /* Light gray */
+    border-radius: 10px;
+  }
+  .custom-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af; /* Darker gray when hovering */
+  }
+}
+
+/* For Mobile/Tablets (Sidebar is hidden behind a button) */
+@media (max-width: 991.98px) {
+  .custom-scroll-container {
+    height: auto;
+    overflow-y: visible; /* Lets the whole screen scroll normally on mobile */
+  }
+}
+
+
+.profile-card {
+  max-width: 420px;
+  border-radius: 12px;
+}
+
+.profile-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-details .row {
+  align-items: flex-start;
+}
+
+@media (max-width: 576px) {
+  .profile-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-details .col-4,
+  .profile-details .col-8 {
+    width: 100%;
+  }
+
+  .profile-details .col-8 {
+    margin-top: 4px;
+  }
+}
+
+
+/* Sidebar Styling */
+.custom-sidebar-list li {
+  margin-bottom: 12px;
+  color: #555;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.custom-sidebar-list input[type="checkbox"] {
+  accent-color: #000; /* Makes the checkbox black when clicked */
+  cursor: pointer;
+}
+
+/* Product Card Styling */
+.custom-product-card {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.custom-product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image Container */
+.image-container {
+  border-radius: 4px;
+  aspect-ratio: 3/4; /* Keeps fashion images nicely proportioned */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.custom-product-card:hover .product-img {
+  opacity: 0.9;
+}
+
+/* Pagination Overrides */
+.custom-pagination .page-link {
+  border-radius: 4px;
+  margin: 0 4px;
+  box-shadow: none !important;
+}
+
+.custom-pagination .page-link:hover {
+  background-color: #f8f9fa;
+}
+
+
+/* Container & General */
+.measurement-container {
+  max-width: 1100px;
+  border-radius: 12px;
+}
+
+/* Number 3 Title Box */
+.title-number {
+  width: 32px;
+  height: 32px;
+  font-weight: bold;
+  background-color: #5d5fef !important; /* Specific matching purple/blue */
+}
+
+/* Custom Buttons */
+.custom-btn-primary {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+  font-weight: 500;
+  border-radius: 6px;
+}
+.custom-btn-primary:hover {
+  background-color: #4a4cd6;
+}
+
+.custom-btn-outline {
+  color: #5d5fef;
+  border-color: #d1d5db;
+  font-weight: 500;
+  border-radius: 6px;
+}
+.custom-btn-outline:hover {
+  background-color: #f3f4f6;
+  color: #5d5fef;
+  border-color: #d1d5db;
+}
+
+/* Navigation Tabs Override */
+.custom-tabs {
+  gap: 20px;
+}
+.custom-tabs .nav-link {
+  padding: 8px 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+.custom-tabs .active-tab {
+  color: #111827 !important;
+  border-bottom: 3px solid #5d5fef !important;
+}
+
+/* Table Styling */
+.custom-table-wrapper {
+  border-color: #f3f4f6 !important;
+}
+.table > :not(caption) > * > * {
+  border-bottom-color: #f3f4f6;
+}
+.table thead th {
+  background-color: #f9fafb;
+}
+
+/* Action Icon Buttons */
+.action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.edit-btn {
+  background-color: #eef2ff;
+  color: #5d5fef;
+}
+.edit-btn:hover {
+  background-color: #e0e7ff;
+}
+.delete-btn {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+.delete-btn:hover {
+  background-color: #fee2e2;
+}
+
+/* Right Side Cards */
+.default-measurement-card {
+  background-color: #f0fdf4; /* Light green */
+  border-radius: 12px;
+}
+.default-measurement-card .text-success {
+  color: #16a34a !important;
+}
+
+.quick-tips-card {
+  background-color: #f8faff; /* Light purple/blue tint */
+  border-radius: 12px;
+}
+
+.quick-tips-card .dot {
+  min-width: 4px;
+  height: 4px;
+  background-color: #4b5563;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+
+/* Container Override */
+.measurement-container {
+  max-width: 1100px;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+/* Number 3 Title Box */
+.title-number {
+  width: 36px;
+  height: 36px;
+  background-color: #5d5fef !important; 
+}
+
+/* Brand Buttons */
+.custom-btn-primary {
+  background-color: #5d5fef;
+  border: 1px solid #5d5fef;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.custom-btn-primary:hover {
+  background-color: #4a4cd6;
+  border-color: #4a4cd6;
+}
+
+.custom-btn-outline {
+  color: #5d5fef;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.custom-btn-outline:hover {
+  background-color: #f8faff;
+  color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+/* Navigation Tabs */
+.custom-tabs {
+  gap: 15px;
+  border-bottom: 2px solid #f3f4f6 !important;
+}
+.custom-tabs .nav-link {
+  padding: 10px 4px;
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: -2px; /* Pull down over the border */
+}
+.custom-tabs .active-tab {
+  color: #111827 !important;
+  border-bottom: 3px solid #5d5fef !important;
+}
+
+/* Table Styling */
+.custom-table-wrapper {
+  border-color: #f3f4f6 !important;
+}
+.table > :not(caption) > * > * {
+  border-bottom-color: #f3f4f6;
+}
+.table thead th {
+  background-color: #f9fafb;
+}
+
+/* Action Icon Buttons */
+.action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.edit-btn {
+  background-color: #eef2ff;
+  color: #5d5fef;
+}
+.edit-btn:hover {
+  background-color: #e0e7ff;
+}
+.delete-btn {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+.delete-btn:hover {
+  background-color: #fee2e2;
+}
+
+/* Right Side Information Cards */
+.default-measurement-card {
+  background-color: #f0fdf4; /* Soft green tint */
+  border-radius: 12px;
+  border: 1px solid #bbf7d0 !important;
+}
+.default-measurement-card .text-success {
+  color: #16a34a !important;
+}
+
+.quick-tips-card {
+  background-color: #f8faff; /* Soft blue tint */
+  border-radius: 12px;
+  border: 1px solid #e0e7ff !important;
+}
+.quick-tips-card .dot {
+  min-width: 5px;
+  height: 5px;
+  background-color: #4b5563;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* --- REACT CUSTOM MODALS --- */
+/* Since we bypass Bootstrap JS, we create our own modal overlay */
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* So it doesn't touch screen edges on mobile */
+}
+
+.modal-dialog-custom {
+  width: 100%;
+  max-width: 600px;
+  animation: modalFadeIn 0.2s ease-out;
+}
+.modal-dialog-custom.modal-lg {
+  max-width: 800px;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Scrollbar for large modals */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1; 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8; 
+}
+
+/* 1. Global Reset (Extra space varaama full-a thadukka) */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box; /* Ithu thaan padding veliya pogaama block pannum */
+}
+
+.admin-layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%; /* Safety lock */
+  overflow-x: hidden;
+  background-color: #f4f6f8;
+}
+
+/* 2. Desktop Sidebar Styling */
+.admin-sidebar {
+  width: 250px;
+  min-width: 250px; /* Sidebar chinnathaagama irukka */
+  display: flex;
+  flex-direction: column;
+  background-color: white; 
+  z-index: 1050;
+  transition: transform 0.3s ease-in-out;
+  border-right: 1px solid #e9ecef;
+}
+
+/* 3. Main Content Area (THE FIX) */
+.admin-main-content {
+  flex: 1; /* Baaki irukka space-a mattum correct-a edukkum */
+  min-width: 0; /* 🚨 Graph matrum Tables veliya neetaama irukka ithu romba mukkiyam! 🚨 */
+  padding: 20px;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* 4. Responsive Logic (Tablet & Mobile Only) */
+@media (max-width: 991px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+  }
+  
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-main-content {
+    padding: 15px; /* Mobile-kku konjam kuraivana padding */
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1040;
+    backdrop-filter: blur(2px);
+  }
+}
+
+/* Desktop Sidebar Styling */
+.admin-sidebar {
+  width: 250px;
+  height: 100vh; /* min-height a height nu maathidunga */
+  display: flex;
+  flex-direction: column; /* Menu items mela, logout keela poga ithu mukkiyam */
+  background-color: white; 
+  z-index: 1050;
+  transition: transform 0.3s ease-in-out;
+  border-right: 1px solid #e9ecef;
 }

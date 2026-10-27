@@ -1,7 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Components/Authcontext';
 
 function Loginpage() {
 
@@ -9,35 +11,55 @@ function Loginpage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const {Login} = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios.post("http://localhost:5000/api/auth/login", { email, password }).then((res) => {
-      localStorage.setItem("token", res.data.token)
-      console.log(res.data);
+      Login({...res.data});
       setMessage("Login successful");
       setTimeout(() => {
-        window.location.href="/dashboard";
+        navigate("/home");
       }, 2000)
+      if (res.data.role === "admin") {
+        setMessage("Admin login successful");
+        setTimeout(() => {
+          navigate("/admin/dashboard"); // 👈 Updated Admin route to match new setup
+        }, 2000)
+      }
     }).catch((err) => {
-      console.error(err);
       setMessage("Login failed. Please check your email and password.");
     })
   }
-
-
 
   return (
     <>
       <section className="vh-auto d-flex align-items-center justify-content-center p-3" style={{ background: 'var(--background)', color: 'var(--text)' }}>
         <div className="p-5 vh-auto rounded-4 shadow col-xxl-4 card my-5">
-          <div className="text-center mb-4" style={{ fontFamily: 'var(--font-heading)' }} ><h1>Login Form</h1></div>
+          <div className="text-center mb-5" style={{ fontFamily: 'var(--font-heading)' }} ><h1>Login Form</h1></div>
 
-          <div>
-            <button className="btn btn-outline-primary w-100 mb-4">
-              <i className="bi bi-google"></i> Continue with Google
-            </button>
+          <div className="d-flex justify-content-center mb-3">
+            <GoogleLogin
+              onSuccess={credentialResponse => {
+                axios.post("http://localhost:5000/api/auth/oauth-login", {
+                  token: credentialResponse.credential
+                }).then((res) => {
+                  setMessage("Login successful");
+                  setTimeout(() => {
+                  Login({...res.data,role:"user"});
+                    navigate("/home");
+                  }, 2000)
+                })
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+              useOneTap
+              width={320} // 🚨 FIXED: width percentage-la irunthatha number-ku maathiyachu
+            />
           </div>
 
           <div className="fp-divider">
@@ -51,13 +73,15 @@ function Loginpage() {
           <form onSubmit={handleSubmit}>
             <div className='d-flex flex-column gap-3 mb-3'>
               <label>Email:</label>
-              <input type="email" id='email' value={email} onChange={(e) => setEmail(e.target.value)} className='form-control' required />
+              {/* 🚨 FIXED: autoComplete="email" add panniyachu */}
+              <input type="email" id='email' autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} className='form-control' required />
             </div>
 
             <div className=" d-flex flex-column gap-3 mb-3  ">
               <label>Password:</label>
               <div className='list-group list-group-horizontal'>
-                <input type={showPassword ? "text" : "password"} id='password' value={password} onChange={(e) => setPassword(e.target.value)} className='form-control' required />
+                {/* 🚨 FIXED: autoComplete="current-password" add panniyachu */}
+                <input type={showPassword ? "text" : "password"} id='password' autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} className='form-control' required />
                 <span onClick={() => setShowPassword(!showPassword)} style={{cursor: 'pointer' }} className='list-group-item'>
                   {showPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
                 </span>
@@ -81,4 +105,4 @@ function Loginpage() {
     )
 }
 
-export default Loginpage
+export default Loginpage;

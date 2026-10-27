@@ -128,7 +128,7 @@ const ScissorIcon = () => (
 /* ══════════════════════════════════════════════════
    MAIN COMPONENT
 ══════════════════════════════════════════════════ */
-export default function LandingPage() {
+function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const revealRefs = useRef([]);
@@ -352,3 +352,5 @@ export default function LandingPage() {
     </>
   );
 }
+
+export default LandingPage

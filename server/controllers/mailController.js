@@ -20,7 +20,9 @@ const sendForgotPasswordEmail = async (req, res) => {
             from: process.env.EMAIL_USER,
             to: user.email,
             subject: "Reset Password",
-            text: `Click on the link to reset your password: http://localhost:5173/reset-password/${resetPasswordToken}
+            text: `Click on the link to reset your password: 
+            http://localhost:5173/reset-password/${resetPasswordToken},
+            
             This link will expire in 15 minutes.`
         });
         res.send({message: "Reset password email sent successfully"});
